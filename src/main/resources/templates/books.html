@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Tutorial</title>
+<th:block th:include="headerinc :: head"></th:block> 
+   
+</head>
+<body>
+<div class="container">
+     <th:block th:include="header :: header"></th:block> 
+    <div th:if="${not #lists.isEmpty(books)}">
+        <h2>Books List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}">Id</td> 
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.description}">Description</td>
+                <td th:text="${book.author.firstName +' ' + book.author.lastName}">Author</td>
+                <td><a th:href="${'/book/' + book.id}">View</a></td>
+                <td><a th:href="${'/book/edit/' + book.id}">Edit</a></td>
+               <td><a th:href="${'/book/delete/' + book.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+   
+</div>
+
+</body>
+</html>
